@@ -4,16 +4,22 @@ const cors = require("cors");
 
 const app = express();
 
-app.use(cors());
+app.use(
+    cors({
+      origin: "http://localhost:3000",
+    })
+  );
 app.use(express.json());
 
 
 const libraryRoutes = require("./routes/library");
 const chatRoutes = require("./routes/chat");
+const eventRoutes = require("./routes/events");
 
 
 app.use("/api/library", libraryRoutes);
 app.use("/api/chat", chatRoutes);
+app.use("/api/events", eventRoutes);
 
 app.get("/", (req, res) => {
     res.send("Campus AI Backend Running 🚀");
