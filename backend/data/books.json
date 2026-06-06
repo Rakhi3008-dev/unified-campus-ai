@@ -1,0 +1,23 @@
+[
+    {
+      "id": 1,
+      "title": "Operating Systems",
+      "author": "Galvin",
+      "available": true,
+      "shelf": "A-12"
+    },
+    {
+      "id": 2,
+      "title": "Database Management Systems",
+      "author": "Korth",
+      "available": false,
+      "shelf": "B-08"
+    },
+    {
+      "id": 3,
+      "title": "Data Structures and Algorithms",
+      "author": "CLRS",
+      "available": true,
+      "shelf": "C-15"
+    }
+  ]
