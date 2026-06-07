@@ -6,7 +6,7 @@ const app = express();
 
 app.use(
     cors({
-      origin: "https://unified-campus-ai.onrender.com",
+      origin: "https://unified-campus-ai.vercel.app",
     })
   );
 app.use(express.json());
