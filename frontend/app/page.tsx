@@ -17,7 +17,9 @@ export default function Home() {
     menu: "",
     academics: 0,
   });
-
+  const [queryCount,
+    setQueryCount] =
+    useState(0);
   const chatRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
@@ -31,6 +33,24 @@ export default function Home() {
   useEffect(() => {
     fetchDashboard();
   }, []);
+  useEffect(() => {
+    const saved =
+      localStorage.getItem(
+        "messages"
+      );
+  
+    if (saved) {
+      setMessages(
+        JSON.parse(saved)
+      );
+    }
+  }, []);
+  useEffect(() => {
+    localStorage.setItem(
+      "messages",
+      JSON.stringify(messages)
+    );
+  }, [messages]);
   useEffect(() => {
 
     const loggedIn =
@@ -110,6 +130,15 @@ export default function Home() {
     <h1 className="text-2xl font-bold text-white">
       🎓 Campus AI
     </h1>
+    <div className="flex items-center gap-2">
+
+  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+
+  <span className="text-white text-sm">
+    AI Online
+  </span>
+
+</div>
 
     <div className="flex items-center gap-5">
       <span className="text-white font-bold">
@@ -186,7 +215,52 @@ style={{ backgroundColor: "#fffafb" }}>
       {/* Chat */}
 
       <div className="max-w-5xl mx-auto bg-white rounded-xl shadow p-6">
+      <div className="flex gap-3 mb-4 flex-wrap">
 
+<button
+  onClick={() =>
+    setMessage(
+      "Is Operating Systems book available?"
+    )
+  }
+  className="bg-pink-200 hover:bg-pink-300 text-pink-900 font-semibold px-4 py-2 rounded-xl transition"
+>
+  📚 Check Book
+</button>
+
+<button
+  onClick={() =>
+    setMessage(
+      "When is the next Hackathon?"
+    )
+  }
+  className="bg-pink-200 hover:bg-pink-300 text-pink-900 font-semibold px-4 py-2 rounded-xl transition"
+>
+  🎉 Events
+</button>
+
+<button
+  onClick={() => {
+    setMessage("What's today's lunch?");
+    setTimeout(() => sendMessage(), 50);
+  }}
+  className="bg-pink-200 hover:bg-pink-300 text-pink-900 font-semibold px-4 py-2 rounded-xl transition"
+>
+  🍽️ Menu
+</button>
+
+<button
+  onClick={() =>
+    setMessage(
+      "What is the attendance policy?"
+    )
+  }
+  className="bg-pink-200 hover:bg-pink-300 text-pink-900 font-semibold px-4 py-2 rounded-xl transition"
+>
+  📖 Academics
+</button>
+
+</div>
       <h2 className="text-2xl font-bold mb-4 text-black">
           🤖 AI Assistant
         </h2>
