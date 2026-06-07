@@ -15,11 +15,16 @@ app.use(express.json());
 const libraryRoutes = require("./routes/library");
 const chatRoutes = require("./routes/chat");
 const eventRoutes = require("./routes/events");
-
+const dashboardRoutes =
+require("./routes/dashboard");
 
 app.use("/api/library", libraryRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/events", eventRoutes);
+app.use(
+    "/api/dashboard",
+    dashboardRoutes
+  );  
 
 app.get("/", (req, res) => {
     res.send("Campus AI Backend Running 🚀");

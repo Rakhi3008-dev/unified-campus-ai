@@ -1,57 +1,111 @@
 const express = require("express");
 const router = express.Router();
 
-const askGemini = require("../services/aiAgent");
-const books = require("../data/books.json");
+const { askGemini } = require("../services/geminiService");
+const { searchBook } = require("../services/libraryService");
+const { getUpcomingEvent } = require("../services/eventService");
+const { getTodayMenu } = require("../services/menuService");
+const { searchAcademic } = require("../services/academicService");
 
 router.post("/", async (req, res) => {
-    try {
-        const { message } = req.body;
+  try {
+    const { message } = req.body;
 
-        // Library Tool
-        if (message.toLowerCase().includes("book") ||
-            message.toLowerCase().includes("library")) {
+    const lowerMessage = message.toLowerCase();
 
-            const foundBook = books.find(book =>
-                message.toLowerCase().includes(
-                    book.title.toLowerCase()
-                )
-            );
+    let finalResponse = [];
 
-            if (foundBook) {
-                return res.json({
-                    success: true,
-                    response:
-                        `${foundBook.title} by ${foundBook.author} is ${
-                            foundBook.available
-                                ? "available"
-                                : "currently unavailable"
-                        }. Shelf: ${foundBook.shelf}`
-                });
-            }
+    // ---------- LIBRARY ----------
 
-            return res.json({
-                success: true,
-                response: "Sorry, I couldn't find that book."
-            });
-        }
+    const foundBook = searchBook(lowerMessage);
 
-        // Default AI
-        const response = await askGemini(message);
+    if (foundBook) {
+      finalResponse.push(
+        `📚 ${foundBook.title} by ${foundBook.author} is ${
+          foundBook.available
+            ? "available"
+            : "currently unavailable"
+        }.
 
-        res.json({
-            success: true,
-            response
-        });
-
-    } catch (err) {
-        console.log(err);
-
-        res.status(500).json({
-            success: false,
-            error: err.message
-        });
+Shelf: ${foundBook.shelf}`
+      );
     }
+
+    // ---------- EVENTS ----------
+
+    if (
+      lowerMessage.includes("event") ||
+      lowerMessage.includes("hackathon") ||
+      lowerMessage.includes("workshop")
+    ) {
+      const event = getUpcomingEvent();
+
+      finalResponse.push(
+        `🎉 ${event.name}
+
+Date: ${event.date}
+Time: ${event.time}
+Venue: ${event.venue}`
+      );
+    }
+
+    // ---------- MENU ----------
+
+    if (
+      lowerMessage.includes("menu") ||
+      lowerMessage.includes("breakfast") ||
+      lowerMessage.includes("lunch") ||
+      lowerMessage.includes("dinner")
+    ) {
+      const todayMenu = getTodayMenu();
+
+      finalResponse.push(
+`🍽️ Today's Menu
+
+Breakfast: ${todayMenu.breakfast}
+
+Lunch: ${todayMenu.lunch}
+
+Dinner: ${todayMenu.dinner}`
+      );
+    }
+
+    // ---------- ACADEMICS ----------
+
+    const academic = searchAcademic(lowerMessage);
+
+    if (academic) {
+      finalResponse.push(
+        `📖 ${academic.answer}`
+      );
+    }
+
+    // ---------- RETURN CAMPUS SERVICES ----------
+
+    if (finalResponse.length > 0) {
+      return res.json({
+        success: true,
+        response: finalResponse.join("\n\n"),
+      });
+    }
+
+    // ---------- GEMINI ----------
+
+    const response = await askGemini(message);
+
+    return res.json({
+      success: true,
+      response,
+    });
+
+  } catch (err) {
+    console.log(err);
+
+    return res.status(500).json({
+      success: false,
+      error: err.message,
+    });
+  }
 });
 
 module.exports = router;
