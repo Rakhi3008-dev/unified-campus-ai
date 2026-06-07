@@ -1,13 +1,11 @@
 async function askGemini(prompt) {
-  return `🤖 Gemini Fallback Service
-
-You asked:
-
-"${prompt}"
-
-This is a temporary AI fallback response.`;
-}
-
-module.exports = {
-  askGemini,
-};
+    return `I understand your question:
+  
+  "${prompt}"
+  
+  Currently I'm running in demo mode, but I can help you with general campus-related queries.`;
+  }
+  
+  module.exports = {
+    askGemini,
+  };

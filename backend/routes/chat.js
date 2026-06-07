@@ -29,8 +29,16 @@ router.post("/", async (req, res) => {
 
 Shelf: ${foundBook.shelf}`
       );
+      
     }
-
+    if (finalResponse.length > 0) {
+        return res.json({
+          success: true,
+          response: finalResponse.join("\n\n"),
+          source: "📚 Library MCP",
+        });
+      }
+ 
     // ---------- EVENTS ----------
 
     if (
@@ -50,6 +58,7 @@ Date: ${event.date}
 Time: ${event.time}
 Venue: ${event.venue}`
       );
+      sources.push("🎉 Events MCP");
     }
 
     // ---------- MENU ----------
@@ -71,6 +80,7 @@ Lunch: ${todayMenu.lunch}
 
 Dinner: ${todayMenu.dinner}`
       );
+      sources.push("🍽️ Cafeteria MCP");
     }
 
     // ---------- ACADEMICS ----------
@@ -89,17 +99,20 @@ Dinner: ${todayMenu.dinner}`
       return res.json({
         success: true,
         response: finalResponse.join("\n\n"),
+        source: "🏫 Campus Services MCP",
       });
     }
 
     // ---------- GEMINI ----------
 
-    const response = await askGemini(message);
-
-    return res.json({
-      success: true,
-      response,
-    });
+    const response =
+    await askGemini(message);
+  
+  return res.json({
+    success: true,
+    response,
+    source: "🤖 Gemini Fallback",
+  });
 
   } catch (err) {
     console.log(err);
