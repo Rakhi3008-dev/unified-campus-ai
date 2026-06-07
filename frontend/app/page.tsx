@@ -35,7 +35,7 @@ export default function Home() {
   const fetchDashboard = useCallback(async () => {
     setDashboardLoading(true);
     try {
-      const res = await axios.get("http://localhost:8001/api/dashboard");
+      const res = await axios.get("https://unified-campus-ai.onrender.com/api/dashboard");
       setDashboard(res.data);
     } catch (err) {
       console.error("Failed to fetch dashboard data:", err);
@@ -108,7 +108,7 @@ export default function Home() {
     setLoading(true);
 
     try {
-      const res = await axios.post("http://localhost:8001/api/chat", {
+      const res = await axios.post("https://unified-campus-ai.onrender.com/api/chat", {
         message: currentMessage,
       });
 
