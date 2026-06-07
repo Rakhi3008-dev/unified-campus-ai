@@ -185,24 +185,38 @@ export default function Home() {
           <p className="col-span-5 text-center">Loading dashboard...</p>
         ) : (
           <>
-            <div className="rounded-3xl bg-white p-6 text-center shadow-lg border border-slate-100 hover:shadow-xl transition duration-300">
+            <div className="rounded-3xl p-6 text-center shadow-xl border border-white/30 backdrop-blur-md hover:-translate-y-1 hover:shadow-2xl transition-all duration-300"
+style={{
+  background: "rgba(255,255,255,0.85)"
+}}>
               <h2 className="text-xl font-bold text-black">📚 Library</h2>
               <p className="text-gray-700 mt-2">{dashboard.books} Books Indexed</p>
             </div>
-            <div className="rounded-3xl bg-white p-6 text-center shadow-lg border border-slate-100 hover:shadow-xl transition duration-300">
-              <h2 className="text-xl font-bold text-black">🎉 Events</h2>
+            <div className="rounded-3xl p-6 text-center shadow-xl border border-white/30 backdrop-blur-md hover:-translate-y-1 hover:shadow-2xl transition-all duration-300"
+style={{
+  background: "rgba(255,255,255,0.85)"
+}}> 
+ <h2 className="text-xl font-bold text-black">🎉 Events</h2>
               <p className="text-gray-700 mt-2">{dashboard.events} Upcoming Events</p>
             </div>
-            <div className="rounded-3xl bg-white p-6 text-center shadow-lg border border-slate-100 hover:shadow-xl transition duration-300">
-              <h2 className="text-xl font-bold text-black">🍽️ Cafeteria</h2>
+            <div className="rounded-3xl p-6 text-center shadow-xl border border-white/30 backdrop-blur-md hover:-translate-y-1 hover:shadow-2xl transition-all duration-300"
+style={{
+  background: "rgba(255,255,255,0.85)"
+}}>
+   <h2 className="text-xl font-bold text-black">🍽️ Cafeteria</h2>
               <p className="text-gray-700 mt-2">{dashboard.menu}</p>
             </div>
-            <div className="rounded-3xl bg-white p-6 text-center shadow-lg border border-slate-100 hover:shadow-xl transition duration-300">
-              <h2 className="text-xl font-bold text-black">📖 Academics</h2>
+            <div className="rounded-3xl p-6 text-center shadow-xl border border-white/30 backdrop-blur-md hover:-translate-y-1 hover:shadow-2xl transition-all duration-300"
+style={{
+  background: "rgba(255,255,255,0.85)"
+}}>
+   <h2 className="text-xl font-bold text-black">📖 Academics</h2>
               <p className="text-gray-700 mt-2">{dashboard.academics} Policies</p>
             </div>
-            <div className="rounded-3xl bg-white p-6 text-center shadow-lg border border-slate-100 hover:shadow-xl transition duration-300">
-              <h2 className="text-xl font-bold text-black">🤖 AI Queries</h2>
+            <div className="rounded-3xl p-6 text-center shadow-xl border border-white/30 backdrop-blur-md hover:-translate-y-1 hover:shadow-2xl transition-all duration-300"
+style={{
+  background: "rgba(255,255,255,0.85)"
+}}> <h2 className="text-xl font-bold text-black">🤖 AI Queries</h2>
               <p className="text-gray-700 mt-2">{queryCount}</p>
             </div>
           </>
@@ -216,9 +230,19 @@ export default function Home() {
 
 <div className="flex items-center gap-3">
 
-  <h2 className="text-2xl font-bold text-black">
+<div className="flex justify-between items-center mb-5">
+
+<div>
+  <h2 className="text-3xl font-bold text-slate-900">
     🤖 AI Assistant
   </h2>
+
+  <p className="text-slate-500 text-sm mt-1">
+    Powered by MCP Services + AI Routing
+  </p>
+</div>
+
+</div>
 
   <span className="bg-indigo-100 text-indigo-600 px-3 py-1 rounded-full text-sm">
     Always here to help!
@@ -287,20 +311,28 @@ export default function Home() {
           className="border border-slate-200 rounded-2xl h-80 overflow-y-auto p-6 bg-slate-50"
         >
          {messages.length === 0 && (
-  <div className="bg-white border border-slate-200 rounded-2xl p-5 max-w-xl shadow-sm">
+  <div className="h-full flex items-center justify-center">
 
-    <p className="font-semibold text-slate-800">
-      👋 Hello! I'm your Campus AI assistant.
-    </p>
+    <div className="bg-white rounded-3xl shadow-md border border-slate-200 p-8 max-w-lg text-center">
 
-    <p className="text-slate-600 mt-2">
-      Ask me anything about books, events, cafeteria,
-      academics, or general campus information.
-    </p>
+      <div className="text-5xl mb-4">
+        🤖
+      </div>
+
+      <h3 className="text-2xl font-bold text-slate-800">
+        Welcome to Campus AI
+      </h3>
+
+      <p className="text-slate-500 mt-3">
+        Ask about books, events,
+        cafeteria menus, academics,
+        or any general campus query.
+      </p>
+
+    </div>
 
   </div>
-            
-          )}
+)}
           {messages.map((msg, index) => (
             <div
               key={index}
@@ -362,19 +394,34 @@ export default function Home() {
         </div>
       </div>
 
-      <footer style={{
-background:
-"linear-gradient(90deg,#16213e,#1b2a5b,#2d1b69)"
-}}
-className="mt-10">
-        <div className="max-w-6xl mx-auto text-center text-white py-5">
-          <h3 className="font-semibold text-lg">
-            Unified Campus Intelligence Dashboard
-          </h3>
-          <p className="mt-1 text-sm">Built with Next.js • Express.js • Gemini AI</p>
-          <p className="text-xs opacity-90 mt-1">© 2026 Rakhi Jha</p>
-        </div>
-      </footer>
+      <footer
+  className="mt-10"
+  style={{
+    background:
+      "linear-gradient(90deg,#16213e,#1b2a5b,#2d1b69)"
+  }}
+>
+
+<div className="max-w-6xl mx-auto py-6 flex justify-between items-center text-white">
+
+<div>
+<h3 className="font-bold text-xl">
+🎓 Campus AI
+</h3>
+
+<p className="text-sm opacity-80 mt-1">
+AI-powered unified campus assistant
+</p>
+</div>
+
+<div className="text-right text-sm opacity-80">
+<p>Next.js • Express.js</p>
+<p>Gemini AI • MCP Services</p>
+</div>
+
+</div>
+
+</footer>
     </main>
   );
 }
