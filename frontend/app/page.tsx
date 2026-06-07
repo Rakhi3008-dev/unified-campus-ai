@@ -146,10 +146,13 @@ export default function Home() {
 }}>
         <div className="flex justify-between items-center px-8 py-5 shadow-2xl rounded-none">
           <h1 className="text-2xl font-bold text-white">🎓 Campus AI</h1>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-            <span className="text-white text-sm">AI Online</span>
-          </div>
+          
+          <div className="flex items-center gap-2 bg-green-100 px-3 py-1 rounded-full">
+  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+  <span className="text-green-700 text-sm font-medium">
+    AI Online
+  </span>
+</div>
           <div className="flex items-center gap-5">
             <span className="text-white font-bold">Welcome Student</span>
             <button
@@ -167,14 +170,13 @@ export default function Home() {
 
       <div className="max-w-5xl mx-auto mt-8 mb-10">
 
-  <h1 className="text-4xl font-extrabold text-center text-slate-900">
-    Unified Campus Intelligence Dashboard
-  </h1>
+      <h1 className="text-5xl font-extrabold text-center text-slate-900">
+  Unified Campus Intelligence Dashboard
+</h1>
 
-  <p className="text-center text-slate-500 mt-4">
-    ✨ Your all-in-one assistant for campus information
-  </p>
-
+<p className="text-center text-slate-500 mt-3">
+  ✨ AI-powered assistant for campus services
+</p>
 </div>
 
       {/* Dashboard Cards */}
@@ -229,7 +231,7 @@ export default function Home() {
     setMessages([]);
     localStorage.removeItem("messages");
   }}
-  className="border border-slate-300 px-4 py-2 rounded-xl hover:bg-slate-100 transition "
+  className="bg-red-50 text-red-600 border border-red-200 px-4 py-2 rounded-xl font-medium hover:bg-red-100 hover:border-red-300 transition duration-200"
 >
   🗑️ Clear Chat
 </button>
