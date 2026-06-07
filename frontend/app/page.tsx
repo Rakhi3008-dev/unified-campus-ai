@@ -130,26 +130,17 @@ export default function Home() {
 </nav>
 <div className="max-w-5xl mx-auto flex justify-between items-center mb-8">
 
-<h1 className="text-4xl font-bold text-black">
+<h1 className="text-4xl font-bold text-center text-black mb-8">
   Unified Campus Intelligence Dashboard
 </h1>
-
-<button
-  onClick={() => {
-    localStorage.removeItem("loggedIn");
-    router.push("/login");
-  }}
-  className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg"
->
-  Logout
-</button>
 
 </div>
       {/* Dashboard Cards */}
 
       <div className="max-w-5xl mx-auto grid grid-cols-4 gap-4 mb-6">
 
-        <div className="bg-white rounded-xl shadow p-6 text-center">
+        <div className="rounded-2xl shadow-md p-6 text-center border border-pink-200"
+style={{ backgroundColor: "#fffafb" }}>
         <h2 className="text-xl font-bold text-black">
   📚 Library
 </h2>
@@ -159,7 +150,8 @@ export default function Home() {
 </p>
         </div>
 
-        <div className="bg-white rounded-xl shadow p-6 text-center">
+        <div className="rounded-2xl shadow-md p-6 text-center border border-pink-200"
+style={{ backgroundColor: "#fffafb" }}>
         <h2 className="text-xl font-bold text-black">
   🎉 Events
 </h2>
@@ -169,7 +161,8 @@ export default function Home() {
 </p>
         </div>
 
-        <div className="bg-white rounded-xl shadow p-6 text-center">
+        <div className="rounded-2xl shadow-md p-6 text-center border border-pink-200"
+style={{ backgroundColor: "#fffafb" }}>
         <h2 className="text-xl font-bold text-black">
   🍽️ Cafeteria
 </h2>
@@ -177,7 +170,8 @@ export default function Home() {
   {dashboard.menu}
 </p>
         </div>
-        <div className="bg-white rounded-xl shadow p-6 text-center">
+        <div className="rounded-2xl shadow-md p-6 text-center border border-pink-200"
+style={{ backgroundColor: "#fffafb" }}>
   <h2 className="text-xl font-bold text-black">
     📖 Academics
   </h2>
@@ -199,7 +193,7 @@ export default function Home() {
 
         <div
           ref={chatRef}
-          className="border rounded-lg h-96 overflow-y-auto p-4 bg-gray-50"
+         className="border rounded-xl h-72 overflow-y-auto p-5 bg-gray-50"
         >
 
           {messages.length === 0 && (
