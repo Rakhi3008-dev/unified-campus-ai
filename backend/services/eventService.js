@@ -1,9 +1,9 @@
 const events = require("../data/events.json");
 
-function getEvents() {
-  return events;
+function getUpcomingEvent() {
+  return events[0];
 }
 
 module.exports = {
-  getEvents
+  getUpcomingEvent,
 };

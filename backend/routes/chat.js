@@ -38,7 +38,10 @@ Shelf: ${foundBook.shelf}`
       lowerMessage.includes("hackathon") ||
       lowerMessage.includes("workshop")
     ) {
-      const event = getUpcomingEvent();
+        console.log(getUpcomingEvent);
+
+const event = getUpcomingEvent();
+     
 
       finalResponse.push(
         `🎉 ${event.name}

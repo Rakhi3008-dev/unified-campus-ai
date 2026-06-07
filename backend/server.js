@@ -11,7 +11,7 @@ app.use(
   );
 app.use(express.json());
 
-
+console.log(process.env.GEMINI_API_KEY);
 const libraryRoutes = require("./routes/library");
 const chatRoutes = require("./routes/chat");
 const eventRoutes = require("./routes/events");
